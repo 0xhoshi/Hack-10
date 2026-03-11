@@ -1,0 +1,321 @@
+@use "bootstrap/scss/bootstrap" as * with (
+  $info: #ff003c, // Cyberpunk Red
+  $primary: #ff003c, // Cyberpunk Red
+  $secondary: #0a0a0a, // Dark grey/black
+  $success: #00ff00, // Neon Green
+  $danger: #ff003c, 
+  $warning: #ffcc00,
+  $dark: #000000, // Pitch Black
+  $light: #1a1a1a, // Darker Grey
+  $body-bg: #050505, // Almost black background
+  $body-color: #e0e0e0, // Light grey text
+  $font-family-base: ("Courier New", Courier, monospace) // Terminal font
+);
+
+@use "includes/components/table";
+@use "includes/components/jumbotron";
+@use "includes/components/challenge";
+@use "includes/components/sticky-footer";
+@use "includes/components/graphs";
+
+@use "includes/utils/fonts";
+@use "includes/utils/opacity";
+@use "includes/utils/min-height";
+@use "includes/utils/cursors";
+@use "includes/utils/lolight";
+
+@use "includes/icons/award-icons";
+@use "includes/icons/flag-icons";
+
+// Cyberpunk / Terminal styling overrides
+body {
+  text-shadow: 0 0 2px rgba(255, 0, 60, 0.5);
+}
+
+.btn-primary {
+  background-color: transparent !important;
+  color: #ff003c !important;
+  border: 1px solid #ff003c !important;
+  box-shadow: 0 0 10px rgba(255, 0, 60, 0.8), inset 0 0 10px rgba(255, 0, 60, 0.4);
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #ff003c !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px rgba(255, 0, 60, 1), inset 0 0 10px rgba(255, 0, 60, 0.8);
+  }
+}
+
+.navbar {
+  background-color: #000 !important;
+  border-bottom: 2px solid #ff003c;
+  box-shadow: 0 0 15px rgba(255, 0, 60, 0.6);
+}
+
+.card {
+  background-color: #0a0a0a;
+  border: 1px solid #ff003c;
+  box-shadow: 0 0 10px rgba(255, 0, 60, 0.5);
+  color: #ff003c;
+}
+
+/* Scoreboard Animation */
+@keyframes neon-pulse {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 0, 60, 0.2), inset 0 0 2px rgba(255, 0, 60, 0.1);
+    background-color: rgba(255, 0, 60, 0.02);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.8), inset 0 0 10px rgba(255, 0, 60, 0.4);
+    background-color: rgba(255, 0, 60, 0.15);
+  }
+}
+
+#scoreboard tbody tr {
+  animation: neon-pulse 1.5s infinite alternate;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba(255, 0, 60, 0.3) !important;
+    transform: scale(1.02);
+    z-index: 10;
+    position: relative;
+  }
+
+  td {
+    border-color: rgba(255, 0, 60, 0.3);
+    color: #e0e0e0;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+/* Global Overrides */
+/* Explicitly target text elements to prevent overwriting Font Awesome icons */
+body, h1, h2, h3, h4, h5, h6, p, a, span, div, li, td, th, label, input, button, .navbar, .nav-link, .dropdown-item, .alert {
+  font-family: 'Orbitron', sans-serif !important;
+}
+
+body {
+  background-color: #050505 !important;
+  background-image: 
+    linear-gradient(90deg, rgba(255, 0, 60, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255, 0, 60, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+  color: #e0e0e0;
+}
+
+.hacker-font {
+  font-family: 'Orbitron', sans-serif !important;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Hide default CTFd logos from pages (the huge center logo) */
+img[src*="logo.svg"], svg.d-block {
+  display: none !important;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  letter-spacing: 2px;
+  position: relative;
+  text-transform: uppercase;
+  color: #ff003c;
+}
+
+/* Overall page subtle glitch */
+@keyframes full-page-glitch {
+  0% { transform: translate(0); clip-path: inset(0 0 0 0); }
+  2% { transform: translate(-2px, 2px); clip-path: inset(10% 0 80% 0); filter: hue-rotate(90deg); }
+  4% { transform: translate(2px, -2px); clip-path: inset(40% 0 10% 0); filter: hue-rotate(-90deg); }
+  6% { transform: translate(0); clip-path: inset(0 0 0 0); filter: none; }
+  100% { transform: translate(0); clip-path: inset(0 0 0 0); filter: none; }
+}
+
+main {
+  animation: full-page-glitch 8s infinite;
+}
+
+/* Premium Angled Buttons */
+.btn-primary {
+  background-color: transparent !important;
+  color: #ff003c !important;
+  border: none !important;
+  box-shadow: none !important;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0 !important;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  transition: all 0.2s ease;
+  padding: 10px 20px;
+  background: rgba(255, 0, 60, 0.1) !important;
+  border-left: 3px solid #ff003c !important;
+
+  &:hover {
+    background: #ff003c !important;
+    color: #000 !important;
+    animation: text-glitch 0.2s cubic-bezier(.25, .46, .45, .94) both infinite;
+  }
+}
+
+@keyframes text-glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) }
+  40% { transform: translate(-2px, -2px) }
+  60% { transform: translate(2px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
+}
+
+/* Refined Red/Black Hacker Prize Card */
+.prize-card {
+  background-color: #0a0203 !important;
+  border: none !important;
+  border-left: 4px solid #ff003c !important;
+  color: #e0e0e0;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: none !important;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, transparent 40%, rgba(255, 0, 60, 0.05) 50%, transparent 60%);
+    background-size: 200% 200%;
+    transition: background-position 0.5s ease;
+  }
+
+  h3, h4 {
+    color: #ff003c;
+    text-shadow: none;
+    font-weight: 800;
+  }
+
+  .terminal-text {
+    color: #ff003c;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .lead {
+    color: #a0a0a0;
+  }
+
+  &:hover {
+    background-color: #1a0508 !important;
+    &::before {
+      background-position: 100% 100%;
+    }
+  }
+}
+
+/* Category Cards */
+.category-card {
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 0, 60, 0.3) !important;
+  color: #e0e0e0;
+  transition: all 0.2s ease;
+  cursor: crosshair;
+
+  &:hover {
+    background-color: rgba(255, 0, 60, 0.1) !important;
+    border-color: #ff003c !important;
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.3) !important;
+    transform: translateY(-3px);
+  }
+
+  h4 {
+    color: #e0e0e0;
+    transition: color 0.2s ease;
+  }
+
+  &:hover h4 {
+    color: #ff003c;
+  }
+}
+
+a {
+  text-decoration: none !important;
+}
+
+blockquote {
+  border-left: 4px solid $secondary;
+  padding-left: 15px;
+}
+
+input,
+select {
+  padding: 0.6rem !important;
+  height: auto !important;
+}
+
+.fa-spin.spinner {
+  text-align: center;
+  opacity: 0.5;
+}
+
+.badge-notification {
+  vertical-align: top;
+  margin-left: -1.5em;
+  font-size: 50%;
+}
+
+.form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e");
+  background-size: 8px 10px;
+}
+
+/* Typing Animation Keyframes for Landing Page */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 43ch }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ff003c; }
+}
+
+/* Holographic Flicker Animation for Logo */
+@keyframes holographic-flicker {
+  0%   { opacity: 0.1; }
+  5%   { opacity: 0.8; }
+  10%  { opacity: 0.2; }
+  15%  { opacity: 0.9; }
+  25%  { opacity: 0.3; }
+  35%  { opacity: 1; }
+  40%  { opacity: 0.5; }
+  45%  { opacity: 1; }
+  60%  { opacity: 0.8; }
+  70%  { opacity: 1; }
+  80%  { opacity: 0.6; }
+  85%  { opacity: 1; }
+  90%  { opacity: 0.9; }
+  100% { opacity: 1; }
+}
+
+.debris-logo {
+  animation: holographic-flicker 2s ease-in-out forwards;
+  /* Add default drop shadow here, since inline filter style might overwrite it */
+  filter: drop-shadow(0 0 15px rgba(255,0,60,0.6));
+}
