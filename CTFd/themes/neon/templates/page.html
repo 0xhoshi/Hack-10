@@ -11,24 +11,24 @@
           <img src="{{ url_for('views.themes', theme='neon', path='img/new_logo.png') }}?v=7" class="img-responsive mb-4 d-block mx-auto debris-logo" style="max-height: 450px; width: auto;" alt="Hack@10 Logo">
           
           <!-- Typewriter Stabilizer Block -->
-          <div style="position: relative; display: inline-block;">
+          <div class="welcome-container">
             <!-- Hidden anchor locks the width and height perfectly, stopping all layout jumps -->
-            <h1 class="hacker-font mb-5" style="font-size: 2.2rem; margin: 0; padding-right: 5px; visibility: hidden; pointer-events: none; opacity: 0; letter-spacing: 4px;">Welcome to International HACK@10 CTF 2026</h1>
+            <h1 class="hacker-font mb-5 welcome-bg">Welcome to International HACK@10 CTF 2026</h1>
             
             <!-- Absolute overlay performs the typing effect without shifting the parent container -->
-            <h1 class="glitch-text hacker-font mb-5" style="font-size: 2.2rem; margin: 0; position: absolute; top: 0; left: 0; overflow: hidden; white-space: nowrap; border-right: .15em solid #ff003c; animation: typing 3s steps(42, end) forwards, blink-caret .75s step-end infinite;">Welcome to International HACK@10 CTF 2026</h1>
+            <h1 class="glitch-text hacker-font mb-5 welcome-text">Welcome to International HACK@10 CTF 2026</h1>
           </div>
         </div>
       </div>
 
       <!-- 3-Tier Prize Section -->
-      <div class="row justify-content-center mt-4 align-items-end" style="min-height: 400px;">
+      <div class="row justify-content-center mt-4 align-items-end prize-section">
         
         <!-- 2nd Place -->
         <div class="col-md-4 mb-4 order-2 order-md-1">
-          <div class="card prize-card p-4 text-center h-100" style="border-left-color: #ff3366 !important; margin-top: 80px;" onmouseover="this.style.transform='scale(1.05) translateY(-5px)'" onmouseout="this.style.transform='none'">
-            <h4 class="mb-3 hacker-font text-white" style="font-size: 1.2rem; opacity: 0.8;">2ND PLACE</h4>
-            <div class="mt-auto terminal-text hacker-font" style="font-size: 1.8rem; text-shadow: 0 0 10px rgba(255,0,60,0.5);">
+          <div class="card prize-card p-4 text-center h-100 prize-2">
+            <h4 class="mb-3 hacker-font text-white prize-title">2ND PLACE</h4>
+            <div class="mt-auto terminal-text hacker-font prize-amount prize-2-amount">
               <strong>RM 1000</strong>
             </div>
           </div>
@@ -36,9 +36,9 @@
 
         <!-- 1st Place -->
         <div class="col-md-4 mb-4 order-1 order-md-2" style="z-index: 10;">
-          <div class="card prize-card p-5 text-center" style="transform: scale(1.4); margin-bottom: 80px; border-left-color: #ff0000 !important; background-color: #1a0205 !important; border-width: 3px;" onmouseover="this.style.transform='scale(1.45) translateY(-10px)'" onmouseout="this.style.transform='scale(1.4)'">
-            <h2 class="mb-3 hacker-font text-white" style="font-size: 1.6rem; opacity: 0.8;">1ST PLACE</h2>
-            <div class="mt-auto terminal-text hacker-font" style="font-size: 2.8rem; text-shadow: 0 0 15px rgba(255,0,60,0.8);">
+          <div class="card prize-card p-5 text-center prize-1">
+            <h2 class="mb-3 hacker-font text-white prize-title">1ST PLACE</h2>
+            <div class="mt-auto terminal-text hacker-font prize-amount prize-1-amount">
               <strong>RM 1500</strong>
             </div>
           </div>
@@ -46,9 +46,9 @@
 
         <!-- 3rd Place -->
         <div class="col-md-4 mb-4 order-3 order-md-3">
-          <div class="card prize-card p-4 text-center h-100" style="border-left-color: #ff3366 !important; margin-top: 80px;" onmouseover="this.style.transform='scale(1.05) translateY(-5px)'" onmouseout="this.style.transform='none'">
-            <h4 class="mb-3 hacker-font text-white" style="font-size: 1.2rem; opacity: 0.8;">3RD PLACE</h4>
-            <div class="mt-auto terminal-text hacker-font" style="font-size: 1.8rem; text-shadow: 0 0 10px rgba(255,0,60,0.5);">
+          <div class="card prize-card p-4 text-center h-100 prize-3">
+            <h4 class="mb-3 hacker-font text-white prize-title">3RD PLACE</h4>
+            <div class="mt-auto terminal-text hacker-font prize-amount prize-3-amount">
               <strong>RM 500</strong>
             </div>
           </div>

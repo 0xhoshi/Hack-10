@@ -319,3 +319,136 @@ select {
   /* Add default drop shadow here, since inline filter style might overwrite it */
   filter: drop-shadow(0 0 15px rgba(255,0,60,0.6));
 }
+
+/* Responsive Typing Animation for Welcome Text */
+.welcome-container {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.welcome-bg, .welcome-text {
+  margin: 0;
+  // Font smaller so it fits perfectly on browser with 100% zoom setting
+  font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+  letter-spacing: 2px !important;
+}
+
+.welcome-bg {
+  padding-right: 5px;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.welcome-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: .15em solid #ff003c;
+  /* width: 43ch from typing keyframes */
+  animation: typing 3s steps(42, end) forwards, blink-caret .75s step-end infinite;
+}
+
+/* 3-Tier Prize Section Responsive Tweaks */
+.prize-section {
+  min-height: 400px;
+}
+
+.prize-2, .prize-3 {
+  border-left-color: #ff3366 !important;
+  margin-top: 80px;
+  transition: transform 0.3s ease;
+}
+
+.prize-2:hover, .prize-3:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
+.prize-1 {
+  transform: scale(1.4);
+  margin-bottom: 80px;
+  border-left-color: #ff0000 !important;
+  background-color: #1a0205 !important;
+  border-width: 3px;
+  transition: transform 0.3s ease;
+  z-index: 10;
+}
+
+.prize-1:hover {
+  transform: scale(1.45) translateY(-10px);
+}
+
+.prize-title {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.prize-1 .prize-title {
+  font-size: 1.6rem;
+}
+
+.prize-amount {
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px rgba(255,0,60,0.5);
+}
+
+.prize-1-amount {
+  font-size: 2.8rem;
+  text-shadow: 0 0 15px rgba(255,0,60,0.8);
+}
+
+@media (max-width: 768px) {
+  /* Welcome text mobile adjustments */
+  .welcome-bg {
+    display: none;
+  }
+  .welcome-text {
+    /* Stop typing animation and allow 100% width dropping */
+    position: relative;
+    white-space: normal;
+    overflow: visible;
+    border-right: none;
+    animation: fade-in-up 1s ease-out forwards;
+    width: 100% !important;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    padding: 0 10px;
+  }
+
+  /* Prize cards mobile adjustments */
+  .prize-section {
+    min-height: auto;
+  }
+  .prize-1 {
+    transform: scale(1.05); /* Reset the huge scale */
+    margin-bottom: 30px;
+  }
+  .prize-1:hover {
+    transform: scale(1.1) translateY(-5px);
+  }
+  .prize-2, .prize-3 {
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+  
+  .prize-1 .prize-title {
+    font-size: 1.4rem;
+  }
+  .prize-1-amount {
+    font-size: 2.2rem;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
