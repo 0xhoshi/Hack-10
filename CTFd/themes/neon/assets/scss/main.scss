@@ -151,6 +151,14 @@ main {
   animation: full-page-glitch 8s infinite;
 }
 
+/* Remove stacking context from main when modal is open so modal stays on top */
+body.modal-open main {
+  animation: none !important;
+  transform: none !important;
+  filter: none !important;
+  clip-path: none !important;
+}
+
 /* Premium Angled Buttons */
 .btn-primary {
   background-color: transparent !important;

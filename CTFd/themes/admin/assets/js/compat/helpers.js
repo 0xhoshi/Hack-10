@@ -61,6 +61,34 @@ const files = {
           cb(data);
         }
       },
+      error: function (xhr, status, error) {
+        pg = ezq.ezProgressBar({
+          target: pg,
+          width: 100,
+        });
+        setTimeout(function () {
+          pg.modal("hide");
+        }, 500);
+
+        let errorMessage = "Upload failed.";
+        try {
+            let resp = JSON.parse(xhr.responseText);
+            if (resp.errors) {
+                if (typeof resp.errors === 'string') errorMessage = resp.errors;
+                else if (typeof resp.errors === 'object') {
+                    errorMessage = Object.values(resp.errors).join('\n');
+                }
+            } else if (resp.message) {
+                errorMessage = resp.message;
+            }
+        } catch(e) {}
+
+        ezq.ezAlert({
+            title: "Error!",
+            body: errorMessage,
+            button: "Okay",
+        });
+      },
     });
   },
 };
